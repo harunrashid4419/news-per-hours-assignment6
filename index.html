@@ -35,28 +35,31 @@
         <hr>
     </header>
 
+
+
     <main>
-        <!-- category section start -->
+        <!--category section start -->
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
+                <!-- <a class="text-decoration-none text-dark" href="#">Home</a> -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
-                    aria-label="Toggle navigation">
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div id="category-section" class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </div>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul id="category-section" class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <a class="text-decoration-none text-dark mt-2" href="#">Home</a>
+                    </ul>
                 </div>
             </div>
         </nav>
-        <!-- category section end -->
+        <!-- category section end-->
 
 
         <!-- news category start -->
 
-        <section id="news-category">
+        <section class="pt-5" id="news-category">
 
         </section>
 
@@ -65,10 +68,10 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <h5 id="modal-title" class="modal-title" id="exampleModalLabel">Modal title</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
+                    <div id="modal-body" class="modal-body">
                         ...
                     </div>
                     <div class="modal-footer">
@@ -80,7 +83,6 @@
 
         <!-- news category end -->
     </main>
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js
     "></script>
