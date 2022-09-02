@@ -51,13 +51,18 @@ const displayNews = allNews =>{
                             <h3 class ="pt-3 ms-5">${news.total_view}</h3>
                         </div>
                         <div class="col">
-                            <button onclick = "showDetails()" class="btn btn-primary mt-3 ms-5">Details</button>
+                            <button onclick = "showDetails()" class="btn btn-primary mt-3 ms-5" data-bs-toggle="modal" data-bs-target="#exampleModal">Details</button>
                         </div>
                         </div>
+                        
             </div>
         `;
         newsCategory.appendChild(newsDiv);
     })
 };
+
+const showDetails = () =>{
+    console.log('show')
+}
 
 loadNews();
