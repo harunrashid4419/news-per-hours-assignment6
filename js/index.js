@@ -1,8 +1,13 @@
 const loadCategory = async () => {
-    const url = `https://openapi.programming-hero.com/api/news/categories`;
-    const res = await fetch(url);
-    const data = await res.json();
-    displayCategory(data.data.news_category);
+    try {
+        const url = `https://openapi.programming-hero.com/api/news/categories`;
+        const res = await fetch(url);
+        const data = await res.json();
+        displayCategory(data.data.news_category);
+    }
+    catch(error){
+        console.log(error);
+    }
 };
 
 const displayCategory = categorys => {
@@ -19,16 +24,21 @@ const displayCategory = categorys => {
 
 loadCategory();
 
-const loadNews = async() => {
-    fetch(`https://openapi.programming-hero.com/api/news/category/01`)
+const loadNews = async () => {
+    try{
+        fetch(`https://openapi.programming-hero.com/api/news/category/08`)
         .then(res => res.json())
         .then(data => displayNews(data.data))
+    }
+    catch(error){
+        console.log(error);
+    }
 };
 
-const displayNews = allNews =>{
+const displayNews = allNews => {
     const newsCategory = document.getElementById('news-category');
-    allNews.forEach(news =>{
-        console.log(news);
+    allNews.forEach(news => {
+        // console.log(news);
         const newsDiv = document.createElement('div');
         newsDiv.classList.add('row')
         newsDiv.innerHTML = `
@@ -41,16 +51,16 @@ const displayNews = allNews =>{
                 <div class="row">
                     <div class="col-6 d-flex">
                     <img class=" img-fluid w-25 rounded-circle" src = "${news.author.img}">
-                    <div class ="pt-2">
-                        <p class="ps-3 mb-1">${news.author.name}</p>
-                        <p class="ps-3">${news.author.published_date}</p>
+                    <div class ="pt-4">
+                        <p class="ps-3 mb-1">${news.author.name ? news.author.name : 'No author name available'}</p>
+                        <p class="ps-3">${news.author.published_date ? news.author.published_date : 'No published data available'}</p>
                     </div>
                     </div>
                     <div class="col-2">
-                        <h3 class ="pt-3 ms-5">${news.total_view}</h3>
+                        <p class ="pt-5 ms-5">${news.total_view ? news.total_view : 'No view information'}</p>
                     </div>
                     <div class="col-4">
-                        <button onclick = "showDetails()" class="btn btn-primary mt-3 ms-5" data-bs-toggle="modal" data-bs-target="#exampleModal">Details</button>
+                        <button onclick = "showDetails()" class="btn btn-primary mt-4 ms-5" data-bs-toggle="modal" data-bs-target="#exampleModal">Details</button>
                     </div>
                 </div>
             </div>
@@ -60,52 +70,26 @@ const displayNews = allNews =>{
 }
 
 
-// const displayNews = allNews => {
-//     const newsCategory = document.getElementById('news-category');
-//     allNews.forEach(news => {
-//         console.log(news);
-//         const newsDiv = document.createElement('div');
-//         newsDiv.classList.add('row g-2');
-//         newsDiv.innerHTML = `
-//             <div class="col-12 col-lg-4 col-md-4 col-sm-4">
-//                 <img class="rounded mb-4" src = "${news.thumbnail_url}">
-//             </div>
-//             <div class = "ps-5 pt-5 col-12 col-lg-4 col-md-4 col-sm-4">
-//                 <h4>${news.title}</h4>
-//                 <p>${news.details.slice(0, 200) + '...'}</p>
-//                     <div class="row">
-//                         <div class="col d-flex">
-//                             <img class=" img-fluid w-25 rounded-circle" src = "${news.author.img}">
-//                             <div class ="pt-2">
-//                                 <p class="ps-3 mb-1">${news.author.name}</p>
-//                                 <p class="ps-3">${news.author.published_date}</p>
-//                             </div>
-//                         </div>
-//                         <div class="col">
-//                             <h3 class ="pt-3 ms-5">${news.total_view}</h3>
-//                         </div>
-//                         <div class="col">
-//                             <button onclick = "showDetails()" class="btn btn-primary mt-3 ms-5" data-bs-toggle="modal" data-bs-target="#exampleModal">Details</button>
-//                         </div>
-//                         </div>
-                        
-//             </div>
-//         `;
-//         newsCategory.appendChild(newsDiv);
-//     })
-// };
 
-const showDetails = () =>{
-    fetch(`https://openapi.programming-hero.com/api/news/category/01`)
+const showDetails = () => {
+    try{
+        fetch(`https://openapi.programming-hero.com/api/news/0282e0e58a5c404fbd15261f11c2ab6a`)
         .then(res => res.json())
-        .then(data => details(data.data))
+        .then(data => details(data.data[0]))
+    }
+    catch(error){
+        console.log(error);
+    }
 }
 
-const details = allNews =>{
-    allNews.map(news =>{
-        const modalTitle = document.getElementById('modal-title');
-        modalTitle.innerText = `${news.category_id}`
-    })
+const details = allNews => {
+    console.log(allNews)
+    const modalTitle = document.getElementById('exampleModalLabel');
+    modalTitle.innerText = `${allNews.author.name}`;
+    const modalBody = document.getElementById('modal-body');
+    modalBody.innerHTML = `
+       <img class = "img-fluid" src = "${allNews.image_url}">
+    `
 }
 
 loadNews();
