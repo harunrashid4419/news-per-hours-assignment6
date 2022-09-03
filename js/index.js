@@ -16,7 +16,7 @@ const displayCategory = categorys => {
         const categoryDiv = document.createElement('div');
         categoryDiv.classList.add('navbar-nav');
         categoryDiv.innerHTML = `
-            <a onclick = "loadNews('${category.category_id}'), toggleSpinners(true)" class="nav-link active px-4" aria-current="page" href="#">${category.category_name}</a>
+            <a onclick = "loadNews('${category.category_id}'), toggleSpinners(true)" class="nav-link active px-4" aria-current="page" href="#">${category.category_name ? category.category_name : 'Not Available'}</a>
         `;
         categoryContainer.appendChild(categoryDiv);
     })
@@ -43,21 +43,21 @@ const displayNews = allNews => {
         newsDiv.classList.add('row')
         newsDiv.innerHTML = `
             <div class = "col-sm-12 col-lg-3 col-md-3">
-                <img class="rounded mb-4" src = "${news.thumbnail_url}">
+                <img class="rounded mb-4" src = "${news.thumbnail_url ? news.thumbnail_url : 'No data available'}">
             </div>
             <div class = "col-sm-12 col-lg-9 col-md-9 pt-2">
-                <h4>${news.title}</h4>
+                <h4>${news.title ? news.title : 'No data available'}</h4>
                 <p>${news.details.slice(0, 200) + '...'}</p>
                 <div class="row">
                     <div class="col-6 d-flex">
-                    <img class=" img-fluid w-25 rounded-circle" src = "${news.author.img}">
+                    <img class=" img-fluid w-25 rounded-circle" src = "${news.author.img ? news.author.img: 'No data available'}">
                     <div class ="pt-4">
-                        <p class="ps-3 mb-1">${news.author.name ? news.author.name : 'No author name available'}</p>
-                        <p class="ps-3">${news.author.published_date ? news.author.published_date : 'No published data available'}</p>
+                        <p class="ps-3 mb-1">${news.author.name ? news.author.name : 'No data available'}</p>
+                        <p class="ps-3">${news.author.published_date ? news.author.published_date : 'No data available'}</p>
                     </div>
                     </div>
                     <div class="col-2">
-                        <p class ="pt-5 ms-5">${news.total_view ? news.total_view : 'No view information'}</p>
+                        <p class ="pt-4 ms-5">${news.total_view ? news.total_view : 'No data available'}</p>
                     </div>
                     <div class="col-4">
                         <button onclick = "showDetails()" class="btn btn-primary mt-4 ms-5" data-bs-toggle="modal" data-bs-target="#exampleModal">Details</button>
@@ -84,9 +84,8 @@ const showDetails = () => {
 }
 
 const details = allNews => {
-    console.log(allNews)
     const modalTitle = document.getElementById('exampleModalLabel');
-    modalTitle.innerText = `${allNews.author.name}`;
+    modalTitle.innerText = `${allNews.author.name ? allNews.author.name : 'No author name available'}`;
     const modalBody = document.getElementById('modal-body');
     modalBody.innerHTML = `
        <img class = "img-fluid" src = "${allNews.image_url}">
