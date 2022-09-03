@@ -1,6 +1,7 @@
-const loadCategory = async () => {
+
+const loadCategory = async (categories) => {
     try {
-        const url = `https://openapi.programming-hero.com/api/news/categories`;
+        const url = `https://openapi.programming-hero.com/api/news/${categories}`;
         const res = await fetch(url);
         const data = await res.json();
         displayCategory(data.data.news_category);
@@ -9,6 +10,8 @@ const loadCategory = async () => {
         console.log(error);
     }
 };
+loadCategory('categories');
+
 
 const displayCategory = categorys => {
     const categoryContainer = document.getElementById('category-section');
@@ -22,11 +25,11 @@ const displayCategory = categorys => {
     })
 };
 
-loadCategory();
 
-const loadNews = async () => {
+
+const loadNews = async (category_id) => {
     try{
-        fetch(`https://openapi.programming-hero.com/api/news/category/08`)
+        fetch(`https://openapi.programming-hero.com/api/news/category/${category_id}`)
         .then(res => res.json())
         .then(data => displayNews(data.data))
     }
@@ -35,15 +38,19 @@ const loadNews = async () => {
     }
 };
 
-loadNews();
+loadNews('08');
+
+let countNews = (displayNews) =>{
+    let newsPostCount = displayNews.length;
+    console.log(newsPostCount);
+}
+countNews();
 
 const displayNews = allNews => {
-    const newsCategory = document.getElementById('news-category');        
-    const numbers = document.getElementById('items-number');
+    const newsCategory = document.getElementById('news-category');
+    newsCategory.innerHTML = '';
     allNews.forEach(news => {
         const newsDiv = document.createElement('div');
-        const itemsFound = (newsCategory.childNodes.length);
-        numbers.innerText = itemsFound;
         newsDiv.classList.add('row')
         newsDiv.innerHTML = `
             <div class = "col-sm-12 col-lg-3 col-md-3">
@@ -76,9 +83,12 @@ const displayNews = allNews => {
 
 
 
-const showDetails = (search) => {
+
+
+
+const showDetails = (news_id) => {
     try{
-        fetch(`https://openapi.programming-hero.com/api/news/${search}`)
+        fetch(`https://openapi.programming-hero.com/api/news/${news_id}`)
         .then(res => res.json())
         .then(data => details(data.data[0]))
     }

@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>News Online</title>
+    <title>News per Hours</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css
     ">
+    <script src="https://kit.fontawesome.com/8b969c7bc4.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="bg-light container">
@@ -16,7 +17,7 @@
         <!-- header section start -->
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
-                <a class="navbar-brand" href="index.html"><span class="bg-primary py-1 px-2 rounded">News</span> Online</a>
+                <a class="navbar-brand" href="index.html"><span class="bg-primary py-1 px-2 rounded">News</span>per hours</a>
                 <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
                     <div>
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -62,6 +63,22 @@
             <h4><span id="items-number">0</span> items found for category Entertainment</h4>
         </section>
 
+        <section class="py-5">
+            <div class="row">
+                <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                    <div class="d-flex">
+                        <h5 class="pe-5 pt-2">Sort By View:</h5>
+                        <h5 class="bg-white px-3 py-2">Default <i style="transform: rotate(180deg);"
+                                class="fa-sharp fa-solid fa-chevron-up ms-5"></i></h5>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12 col-12 text-end">
+                    <button class="btn btn-primary">Today's Pick</button>
+                    <button class="btn btn-outline-secondary">Trending</button>
+                </div>
+            </div>
+        </section>
+
         <!-- news category start -->
 
         <section id="spinners" class="d-none">
@@ -72,7 +89,7 @@
             </div>
         </section>
 
-        <section class="pt-5 bg-white p-4 mt-5" id="news-category">
+        <section class="pt-1 bg-white p-4 " id="news-category">
 
         </section>
 
@@ -95,15 +112,15 @@
         </div>
 
         <!-- news category end -->
-    </main>
+        </main>
 
-    <footer class="text-center">
-        <p>Copyright 2021 News Portal</p>
-    </footer>
+        <footer class="text-center">
+            <p>Copyright 2021 News Portal</p>
+        </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js
     "></script>
-    <script src="js/index.js"></script>
+        <script src="js/index.js"></script>
 </body>
 
 </html>
