@@ -60,7 +60,7 @@ const displayNews = allNews => {
                         <p class ="pt-4 ms-5">${news.total_view ? news.total_view : 'No data available'}</p>
                     </div>
                     <div class="col-4">
-                        <button onclick = "showDetails()" class="btn btn-primary mt-4 ms-5" data-bs-toggle="modal" data-bs-target="#exampleModal">Details</button>
+                        <button onclick = "showDetails('${news._id}')" class="btn btn-primary mt-4 ms-5" data-bs-toggle="modal" data-bs-target="#exampleModal">Details</button>
                     </div>
                 </div>
             </div>
@@ -72,9 +72,9 @@ const displayNews = allNews => {
 
 
 
-const showDetails = () => {
+const showDetails = (search) => {
     try{
-        fetch(`https://openapi.programming-hero.com/api/news/0282e0e58a5c404fbd15261f11c2ab6a`)
+        fetch(`https://openapi.programming-hero.com/api/news/${search}`)
         .then(res => res.json())
         .then(data => details(data.data[0]))
     }
@@ -84,12 +84,17 @@ const showDetails = () => {
 }
 
 const details = allNews => {
+    console.log(allNews)
     const modalTitle = document.getElementById('exampleModalLabel');
     modalTitle.innerText = `${allNews.author.name ? allNews.author.name : 'No author name available'}`;
     const modalBody = document.getElementById('modal-body');
     modalBody.innerHTML = `
        <img class = "img-fluid" src = "${allNews.image_url}">
-    `
+       <div class="d-flex">
+       <p class ="pt-3">Rating: ${allNews.rating.number}</p>
+       <p class ="pt-3 ps-5">badge: ${allNews.rating.badge}</p>
+       </div>
+    `;
 }
 
 const toggleSpinners = isLoad =>{
