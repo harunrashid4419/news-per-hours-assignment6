@@ -35,11 +35,15 @@ const loadNews = async () => {
     }
 };
 
+loadNews();
+
 const displayNews = allNews => {
-    const newsCategory = document.getElementById('news-category');
+    const newsCategory = document.getElementById('news-category');        
+    const numbers = document.getElementById('items-number');
     allNews.forEach(news => {
-        // console.log(news);
         const newsDiv = document.createElement('div');
+        const itemsFound = (newsCategory.childNodes.length);
+        numbers.innerText = itemsFound;
         newsDiv.classList.add('row')
         newsDiv.innerHTML = `
             <div class = "col-sm-12 col-lg-3 col-md-3">
@@ -107,6 +111,6 @@ const toggleSpinners = isLoad =>{
     }
 }
 
-loadNews();
+
 
 
