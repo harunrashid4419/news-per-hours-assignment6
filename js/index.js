@@ -16,7 +16,7 @@ const displayCategory = categorys => {
         const categoryDiv = document.createElement('div');
         categoryDiv.classList.add('navbar-nav');
         categoryDiv.innerHTML = `
-            <a class="nav-link active px-4" aria-current="page" href="#">${category.category_name}</a>
+            <a onclick = "loadNews('${category.category_id}'), toggleSpinners(true)" class="nav-link active px-4" aria-current="page" href="#">${category.category_name}</a>
         `;
         categoryContainer.appendChild(categoryDiv);
     })
@@ -66,7 +66,8 @@ const displayNews = allNews => {
             </div>
         `;
         newsCategory.appendChild(newsDiv);
-    })
+    });
+    toggleSpinners(false);
 }
 
 
@@ -90,6 +91,16 @@ const details = allNews => {
     modalBody.innerHTML = `
        <img class = "img-fluid" src = "${allNews.image_url}">
     `
+}
+
+const toggleSpinners = isLoad =>{
+    const spinners = document.getElementById('spinners');
+    if(isLoad){
+        spinners.classList.remove('d-none');
+    }
+    else{
+        spinners.classList.add('d-none');
+    }
 }
 
 loadNews();
