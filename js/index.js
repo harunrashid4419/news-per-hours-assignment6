@@ -58,11 +58,11 @@ const displayNews = allNews => {
         newsDiv.classList.add('row')
         newsDiv.innerHTML = `
             <div class = "col-sm-12 col-lg-3 col-md-3">
-                <img class="rounded mb-4" src = "${news.thumbnail_url ? news.thumbnail_url : 'No data available'}">
+                <img class="rounded mt-4 mb-2" src = "${news.thumbnail_url ? news.thumbnail_url : 'No data available'}">
             </div>
-            <div class = "col-sm-12 col-lg-9 col-md-9 pt-2">
+            <div class = "col-sm-12 col-lg-9 col-md-9 pt-5">
                 <h4>${news.title ? news.title : 'No data available'}</h4>
-                <p>${news.details.slice(0, 200) + '...'}</p>
+                <p>${news.details.slice(0, 300) + '...'}</p>
                 <div class="row">
                     <div class="col-6 d-flex">
                     <img class=" img-fluid w-25 rounded-circle" src = "${news.author.img ? news.author.img: 'No data available'}">
@@ -102,15 +102,17 @@ const showDetails = (news_id) => {
 }
 
 const details = allNews => {
-    console.log(allNews)
     const modalTitle = document.getElementById('exampleModalLabel');
     modalTitle.innerText = `${allNews.author.name ? allNews.author.name : 'No author name available'}`;
     const modalBody = document.getElementById('modal-body');
     modalBody.innerHTML = `
+    <p>${allNews.title ? allNews.title : 'No Data available'}</p>
        <img class = "img-fluid" src = "${allNews.image_url}">
        <div class="d-flex">
-       <p class ="pt-3">Rating: ${allNews.rating.number}</p>
-       <p class ="pt-3 ps-5">badge: ${allNews.rating.badge}</p>
+            <p class ="pt-3"> <b>Id:</b> ${allNews.category_id ? allNews.category_id : 'No data available'}</p>
+            <p class ="pt-3 ps-5"> <b>Rating:</b> ${allNews.rating.number ? allNews.rating.number : 'No data available'}</p>
+            <p class ="pt-3 ps-5"> <b>Total view:</b> ${allNews.total_view ? allNews.total_view : 'No data available'}</p>
+            <p class ="pt-3 ps-5"> <b>Badge:</b> ${allNews.rating.badge ? allNews.rating.badge :'No data available'}</p>
        </div>
     `;
 }
@@ -129,6 +131,3 @@ const toggleSpinners = isLoad =>{
     }
 };
 // --------------------------//
-
-
-
