@@ -53,6 +53,7 @@ const displayNews = allNews => {
     document.getElementById('items-number').innerText = allNews.length;
     const newsCategory = document.getElementById('news-category');
     newsCategory.innerHTML = '';
+
     allNews.forEach(news => {
         const newsDiv = document.createElement('div');
         newsDiv.classList.add('row')
@@ -65,7 +66,7 @@ const displayNews = allNews => {
                 <p>${news.details.slice(0, 300) + '...'}</p>
                 <div class="row">
                     <div class="col-6 d-flex">
-                    <img class=" img-fluid w-25 rounded-circle" src = "${news.author.img ? news.author.img: 'No data available'}">
+                    <img class=" img-fluid w-25 h-100 rounded-circle" src = "${news.author.img ? news.author.img: 'No data available'}">
                     <div class ="pt-4">
                         <p class="ps-3 mb-1">${news.author.name ? news.author.name : 'No data available'}</p>
                         <p class="ps-3">${news.author.published_date ? news.author.published_date : 'No data available'}</p>
