@@ -1,4 +1,5 @@
 
+// --------------------------//
 const loadCategory = async (categories) => {
     try {
         const url = `https://openapi.programming-hero.com/api/news/${categories}`;
@@ -11,8 +12,10 @@ const loadCategory = async (categories) => {
     }
 };
 loadCategory('categories');
+// --------------------------//
 
 
+// --------------------------//
 const displayCategory = categorys => {
     const categoryContainer = document.getElementById('category-section');
     categorys.forEach(category => {
@@ -24,9 +27,11 @@ const displayCategory = categorys => {
         categoryContainer.appendChild(categoryDiv);
     })
 };
+// --------------------------//
 
 
 
+// --------------------------//
 const loadNews = async (category_id) => {
     try{
         fetch(`https://openapi.programming-hero.com/api/news/category/${category_id}`)
@@ -39,14 +44,13 @@ const loadNews = async (category_id) => {
 };
 
 loadNews('08');
+// --------------------------//
 
-let countNews = (displayNews) =>{
-    let newsPostCount = displayNews.length;
-    console.log(newsPostCount);
-}
-countNews();
 
+
+// --------------------------//
 const displayNews = allNews => {
+    document.getElementById('items-number').innerText = allNews.length;
     const newsCategory = document.getElementById('news-category');
     newsCategory.innerHTML = '';
     allNews.forEach(news => {
@@ -80,12 +84,12 @@ const displayNews = allNews => {
     });
     toggleSpinners(false);
 }
+// --------------------------//
 
 
 
 
-
-
+// --------------------------//
 const showDetails = (news_id) => {
     try{
         fetch(`https://openapi.programming-hero.com/api/news/${news_id}`)
@@ -110,7 +114,11 @@ const details = allNews => {
        </div>
     `;
 }
+// --------------------------//
 
+
+
+// --------------------------//
 const toggleSpinners = isLoad =>{
     const spinners = document.getElementById('spinners');
     if(isLoad){
@@ -119,8 +127,8 @@ const toggleSpinners = isLoad =>{
     else{
         spinners.classList.add('d-none');
     }
-}
-
+};
+// --------------------------//
 
 
 
